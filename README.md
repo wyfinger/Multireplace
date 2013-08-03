@@ -39,7 +39,7 @@
 
 > Исправить здесь ссылки !!!
 
-**Видеоинструкция по установке:** [https://github.com/wyfinger/Multireplace/raw/master/video/Install.mp4](https://github.com/wyfinger/Multireplace/raw/master/video/Install.mp4)
+**Видеоинструкция по установке:** [http://github.com/wyfinger/Multireplace/raw/master/video/Install.mp4](http://github.com/wyfinger/Multireplace/raw/master/video/Install.mp4)
 
 **Видеоинструкция по включению макросов:** [http://bit.ly/JORL58](http://bit.ly/JORL58)
 
