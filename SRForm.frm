@@ -24,6 +24,14 @@ Option Explicit
 Dim CB2 As Boolean
 Dim CB3 As Boolean
 
+Private Sub ComButInsertSpetsSimvol_Click()
+Dim sel As Long
+
+If ComboBoxSpetsSimvol.ListIndex = -1 Then Exit Sub
+sel = ReplaceBox.SelStart
+'Debug.Print sel
+ReplaceBox.Text = Left(ReplaceBox.Text, sel) & Left(ComboBoxSpetsSimvol.List(ComboBoxSpetsSimvol.ListIndex), 1) & Right(ReplaceBox.Text, Len(ReplaceBox.Text) - sel)
+End Sub
 
 Private Sub UserForm_Initialize()
 '
@@ -35,6 +43,12 @@ Private Sub UserForm_Initialize()
  CheckBox3 = CBool(GetSetting("SRMacros", "Settings", "MatchCase", False))
  CheckBox4 = CBool(GetSetting("SRMacros", "Settings", "TrackRevisions", False))
  CheckBox5 = CBool(GetSetting("SRMacros", "Settings", "UseRegExp", False))
+ 
+ Dim i As Integer
+ ComboBoxSpetsSimvol.Clear
+ For i = 1 To 255
+    ComboBoxSpetsSimvol.AddItem "'" & Chr(i) & "' ( #" & i & " )"
+ Next
 End Sub
 
 
@@ -257,6 +271,7 @@ Private Sub CommandButton5_Click()
 '
 ' открыть форму со списком файлов
  SRFiles.TextBox1.Text = FilesList
+ SRFiles.Left = Application.Left + Application.Width / 2
  SRFiles.Show
 End Sub
 
