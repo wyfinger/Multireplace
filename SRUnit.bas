@@ -1,13 +1,15 @@
 Attribute VB_Name = "SRUnit"
+' Multireplace Macros
+' https://github.com/wyfinger/multireplace
 ' (C) Wyfinger / wyfinger@mail.ru
 Option Explicit
 
-Private Declare Function IsClipboardFormatAvailable Lib "user32" (ByVal uFormat As Long) As Long
-Private Declare Function OpenClipboard Lib "user32" (ByVal hwnd As Long) As Long
-Private Declare Function GetClipboardData Lib "user32" (ByVal uFormat As Long) As Long
-Private Declare Function CloseClipboard Lib "user32" () As Long
-Private Declare Function DragQueryFile Lib "shell32.dll" Alias "DragQueryFileA" (ByVal drop_handle As Long, ByVal UINT As Long, ByVal lpStr As String, ByVal ch As Long) As Long
-Public Declare Function CallWindowProc Lib "user32" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As Long, ByVal hwnd As Long, ByVal Msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+Private Declare PtrSafe Function IsClipboardFormatAvailable Lib "user32" (ByVal uFormat As Long) As Long
+Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hwnd As Long) As Long
+Private Declare PtrSafe Function GetClipboardData Lib "user32" (ByVal uFormat As Long) As Long
+Private Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
+Private Declare PtrSafe Function DragQueryFile Lib "shell32.dll" Alias "DragQueryFileA" (ByVal drop_handle As Long, ByVal UINT As Long, ByVal lpStr As String, ByVal ch As Long) As Long
+Public Declare PtrSafe Function CallWindowProc Lib "user32" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As Long, ByVal hwnd As Long, ByVal Msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
 
 Private Const CF_HDROP As Long = 15
 Private Const WM_DROPFILES = &H233

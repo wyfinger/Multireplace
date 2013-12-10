@@ -14,6 +14,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+' Multireplace Macros
+' https://github.com/wyfinger/multireplace
 ' (C) Wyfinger / wyfinger@mail.ru
 Option Explicit
 
@@ -21,6 +23,7 @@ Option Explicit
 ' эти переменные нужны для сохранения состояния флажков режима поиска (Case/Matchword)
 Dim CB2 As Boolean
 Dim CB3 As Boolean
+
 
 Private Sub UserForm_Initialize()
 '
