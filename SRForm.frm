@@ -25,11 +25,11 @@ Dim CB2 As Boolean
 Dim CB3 As Boolean
 
 Private Sub ComButInsertSpetsSimvol_Click()
+'
+' восстанавливаем настройки поиска
 Dim sel As Long
-
 If ComboBoxSpetsSimvol.ListIndex = -1 Then Exit Sub
 sel = ReplaceBox.SelStart
-'Debug.Print sel
 ReplaceBox.Text = Left(ReplaceBox.Text, sel) & Left(ComboBoxSpetsSimvol.List(ComboBoxSpetsSimvol.ListIndex), 1) & Right(ReplaceBox.Text, Len(ReplaceBox.Text) - sel)
 End Sub
 
