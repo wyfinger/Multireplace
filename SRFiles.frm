@@ -15,43 +15,39 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 ' Multireplace Macros
 ' https://github.com/wyfinger/multireplace
-' (C) Wyfinger / wyfinger@mail.ru
-Option Explicit
+' (C) Wyfinger / wyfinger@mail.ru / 2015
 
+Option Explicit
 Private Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
 Private Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
 Private Declare PtrSafe Sub DragAcceptFiles Lib "shell32.dll" (ByVal hwnd As Long, ByVal fAccept As Long)
 Const GWL_WNDPROC = (-4)
 
-
 Private Sub CommandButton1_Click()
-
   Dim a() As String, fileCount As Long, i As Long
-    a = SRUnit.GetFiles(fileCount)
-    If (fileCount = 0) Then
-        MsgBox "Нет файлов в буфере обмена"
-    Else
-      SRFiles.TextBox1.Text = ""
-        For i = 0 To fileCount - 1
-           TextBox1.Text = TextBox1.Text & a(i) & Chr(13) & Chr(10)
-        Next
-    End If
+  a = SRUnit.GetFiles(fileCount)
+  If (fileCount = 0) Then
+    MsgBox "Нет файлов в буфере обмена"
+  Else
+    SRFiles.TextBox1.Text = ""
+    For i = 0 To fileCount - 1
+      TextBox1.Text = TextBox1.Text & a(i) & Chr(13) & Chr(10)
+    Next
+  End If
 End Sub
-
 
 Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
-'
-' очередная убогость VBA, при закрытии формы списка файлов мы должны сохранить
-' этот самый список файлов в глобальной переменной, иначе она пропадет
- FilesList = TextBox1.Text
+  '
+  ' очередная убогость VBA, при закрытии формы списка файлов мы должны сохранить
+  ' этот самый список файлов в глобальной переменной, иначе она пропадет
+  FilesList = TextBox1.Text
 End Sub
 
-
 Private Sub UserForm_Activate()
-'
-' этот код может нестабильно работать под отладчиком
- Dim lnghWnd&
- lnghWnd = FindWindow(vbNullString, SRFiles.Caption)
- p = SetWindowLong(lnghWnd, GWL_WNDPROC, AddressOf SRUnit.WindowProc)
- DragAcceptFiles lnghWnd, True
+  '
+  ' этот код может нестабильно работать под отладчиком
+  Dim lnghWnd&
+  lnghWnd = FindWindow(vbNullString, SRFiles.Caption)
+  p = SetWindowLong(lnghWnd, GWL_WNDPROC, AddressOf SRUnit.WindowProc)
+  DragAcceptFiles lnghWnd, True
 End Sub
